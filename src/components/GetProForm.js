@@ -104,7 +104,7 @@ function GetProgasModal(props) {
                 method='POST'
                 data-netlify='true'
                 data-netlify-honeypot='bot-field'
-                action='/progasthankyou/'
+                action='/progasthankyou'
                 noValidate
                 validated={validated}
                 onSubmit={handleOnSubmit}>
