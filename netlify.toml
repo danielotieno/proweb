@@ -1,2 +1,12 @@
+[[redirects]]
+  from = "/*"
+  to = "/progasthankyou.html"
+  status = 200
+  force = false
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
 [build]
   functions = "lambda"
