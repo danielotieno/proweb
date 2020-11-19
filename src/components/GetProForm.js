@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { navigate } from 'gatsby';
 import {
   Container,
   Form,
@@ -13,7 +14,7 @@ import getProgasImg from '../images/get.png';
 import Bike from '../images/bike1.png';
 
 const endpoints = {
-  contact: 'http://localhost:9000/sendSms',
+  contact: '/.netlify/functions/sendSms',
 };
 
 const axios = require('axios');
@@ -37,25 +38,26 @@ function GetProgasModal(props) {
     }
     setValidated(true);
 
-    // let { phone } = formState;
-    // let data = { phone };
+    let { phone } = formState;
+    let data = { phone };
 
-    // console.log(data);
+    console.log(data);
 
-    // const axiosOptions = {
-    //   url: endpoints.contact,
-    //   method: 'post',
-    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //   data: data,
-    // };
+    const axiosOptions = {
+      url: endpoints.contact,
+      method: 'post',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      data: data,
+    };
 
-    // axios(axiosOptions).then((response) => {
-    //   if (response.status !== 200) {
-    //     handleError();
-    //   } else {
-    //     handleSuccess();
-    //   }
-    // });
+    axios(axiosOptions).then((response) => {
+      if (response.status !== 200) {
+        handleError();
+      } else {
+        navigate('/progasthankyou');
+        handleSuccess();
+      }
+    });
   };
 
   const handleSuccess = () => {
@@ -108,7 +110,6 @@ function GetProgasModal(props) {
                 method='POST'
                 data-netlify='true'
                 data-netlify-honeypot='bot-field'
-                action='/progasthankyou'
                 noValidate
                 validated={validated}
                 onSubmit={handleOnSubmit}>
