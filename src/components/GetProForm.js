@@ -28,13 +28,13 @@ function GetProgasModal(props) {
     cylinder: '',
   });
 
-  const handleAll = (e) => {
+  const handleOnSubmit = (e) => {
     const form = e.currentTarget;
+
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-
     setValidated(true);
 
     let { phone } = formState;
@@ -101,7 +101,7 @@ function GetProgasModal(props) {
                 action='/progasthankyou/'
                 noValidate
                 validated={validated}
-                onSubmit={handleAll}>
+                onSubmit={handleOnSubmit}>
                 <input
                   type='hidden'
                   name='form-name'
@@ -191,7 +191,6 @@ function GetProgasModal(props) {
                 <Form.Row className='label-text'>
                   <Col></Col>
                 </Form.Row>
-
                 <Button className='form-btn' type='submit'>
                   Request a Callback
                 </Button>
