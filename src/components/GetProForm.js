@@ -29,6 +29,8 @@ function GetProgasModal(props) {
   });
 
   const handleOnSubmit = (e) => {
+    e.preventDefault();
+
     const form = e.currentTarget;
 
     if (form.checkValidity() === false) {
@@ -39,19 +41,21 @@ function GetProgasModal(props) {
 
     let { phone } = formState;
     let data = { phone };
-    axios
-      .post(endpoints.contact, JSON.stringify(data), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      })
-      .then((response) => {
-        if (response.status !== 200) {
-          handleError();
-        } else {
-          handleSuccess();
-        }
-      });
+
+    const axiosOptions = {
+      url: endpoints.contact,
+      method: 'post',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      data: JSON.stringify(data),
+    };
+
+    axios(axiosOptions).then((response) => {
+      if (response.status !== 200) {
+        handleError();
+      } else {
+        handleSuccess();
+      }
+    });
   };
 
   const handleSuccess = () => {
