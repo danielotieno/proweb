@@ -39,13 +39,19 @@ function GetProgasModal(props) {
 
     let { phone } = formState;
     let data = { phone };
-    axios.post(endpoints.contact, JSON.stringify(data)).then((response) => {
-      if (response.status !== 200) {
-        handleError();
-      } else {
-        handleSuccess();
-      }
-    });
+    axios
+      .post(endpoints.contact, JSON.stringify(data), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then((response) => {
+        if (response.status !== 200) {
+          handleError();
+        } else {
+          handleSuccess();
+        }
+      });
   };
 
   const handleSuccess = () => {
