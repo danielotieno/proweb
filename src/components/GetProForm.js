@@ -13,7 +13,7 @@ import getProgasImg from '../images/get.png';
 import Bike from '../images/bike1.png';
 
 const endpoints = {
-  contact: '/.netlify/functions/sendSms',
+  contact: 'http://localhost:9000/sendSms',
 };
 
 const axios = require('axios');
@@ -29,8 +29,6 @@ function GetProgasModal(props) {
   });
 
   const handleOnSubmit = (e) => {
-    e.preventDefault();
-
     const form = e.currentTarget;
 
     if (form.checkValidity() === false) {
@@ -39,23 +37,25 @@ function GetProgasModal(props) {
     }
     setValidated(true);
 
-    let { phone } = formState;
-    let data = { phone };
+    // let { phone } = formState;
+    // let data = { phone };
 
-    const axiosOptions = {
-      url: endpoints.contact,
-      method: 'post',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      data: JSON.stringify(data),
-    };
+    // console.log(data);
 
-    axios(axiosOptions).then((response) => {
-      if (response.status !== 200) {
-        handleError();
-      } else {
-        handleSuccess();
-      }
-    });
+    // const axiosOptions = {
+    //   url: endpoints.contact,
+    //   method: 'post',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   data: data,
+    // };
+
+    // axios(axiosOptions).then((response) => {
+    //   if (response.status !== 200) {
+    //     handleError();
+    //   } else {
+    //     handleSuccess();
+    //   }
+    // });
   };
 
   const handleSuccess = () => {

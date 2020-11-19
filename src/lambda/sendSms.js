@@ -17,6 +17,7 @@ const sms = Africastalking.SMS;
 exports.handler = async (event, context) => {
   let response;
   let data = JSON.parse(event.body);
+  console.log(data);
   let { phone } = data;
   let phoneArray = Array.from(phone);
   phoneArray[0] = '+254';
